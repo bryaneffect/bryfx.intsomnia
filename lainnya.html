@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desain Lainnya - FX.DESIGN</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000;
+      --fg: #f7f7f7;
+      --accent: #ffffff;
+      --muted: #b3b3b3;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
+                  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 25%),
+                  var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1140px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 2.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      display: block;
+      max-height: 2.5rem;
+      width: auto;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 2.5rem 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+    }
+
+    .hero-text {
+      max-width: 42rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      padding: 1.6rem;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 24px 40px rgba(0,0,0,0.18);
+      margin-top: 1.5rem;
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .card img {
+      width: 584.58px;
+      height: 550.7px;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .button,
+    .button.secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .button {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .button:hover,
+    .button.secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 840px) {
+      header { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; }
+    }
+
+    .particle {
+      position: fixed;
+      width: 0.8rem;
+      height: 0.8rem;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 10s infinite linear;
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, -50px) rotate(90deg); }
+      50% { transform: translate(-50px, 100px) rotate(180deg); }
+      75% { transform: translate(150px, 50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 30%; top: 40%; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 50%; top: 60%; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 70%; top: 30%; animation-delay: 6s; }
+    .particle:nth-child(5) { left: 90%; top: 50%; animation-delay: 8s; }
+    .particle:nth-child(6) { left: 20%; top: 70%; animation-delay: 1s; }
+    .particle:nth-child(7) { left: 60%; top: 10%; animation-delay: 3s; }
+    .particle:nth-child(8) { left: 80%; top: 80%; animation-delay: 5s; }
+    .particle:nth-child(9) { left: 5%; top: 35%; animation-delay: 7s; }
+    .particle:nth-child(10) { left: 25%; top: 55%; animation-delay: 9s; }
+    .particle:nth-child(11) { left: 45%; top: 15%; animation-delay: 0.5s; }
+    .particle:nth-child(12) { left: 65%; top: 75%; animation-delay: 2.5s; }
+  </style>
+</head>
+<body>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="container">
+    <header>
+      <a class="brand" href="index.html">
+        <img src="https://h.top4top.io/p_3761gvfn21.png" alt="logo with name" class="brand-logo" />
+      </a>
+      <nav>
+        <a href="index.html#services">Layanan</a>
+        <a href="index.html#portfolio">Portofolio</a>
+        <a href="index.html#contact">Kontak</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-title">Desain Media Lainnya</h1>
+      <p class="hero-text">Layanan desain tambahan untuk logo, splash screen, dan kebutuhan visual khusus yang tidak termasuk kategori standar.</p>
+      <article class="card">
+        <h3>Portofolio Desain</h3>
+        <img src="https://c.top4top.io/p_3787lt4ip1.png" alt="Portofolio Desain Lainnya" />
+        <a href="index.html" class="button secondary">Kembali ke Beranda</a>
+      </article>
+    </section>
+
+    <footer>
+       <div>
+         <strong>FX.DESIGN</strong>
+         <p>Effect to FX</p>
+         <p>Copyright © 2026 FX.DESIGN. All rights reserved.</p>
+       </div>
+       <div>
+         <p>Instagram: @fx.design0</p>
+         <p>Tiktok: @fx.design0</p>
+         <p>Whats App: +62 895 3830 98720</p>
+       </div>
+    </footer>
+  </div>
+</body>
+</html>
+

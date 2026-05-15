@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FX.DESIGN - Desain untuk kebutuhan bisnis Anda</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000;
+      --fg: #f7f7f7;
+      --accent: #ffffff;
+      --muted: #b3b3b3;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, sans-serif;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
+                  radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 25%),
+                  var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    @keyframes fadeInPage {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      width: min(1140px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 2.5rem;
+      opacity: 0;
+      animation: fadeInPage 0.9s ease-out 0.1s forwards;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      display: block;
+      max-height: 2.5rem;
+      width: auto;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr minmax(320px, 420px);
+      gap: 1.2rem;
+      align-items: center;
+      padding: 2.5rem 0;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title strong {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .hero-text {
+      max-width: 42rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .button,
+    .button.secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .button {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    .hero-panel {
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .hero-panel h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .service-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.85rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.25s forwards;
+    }
+
+    .service-item strong {
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .service-item p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 2.5rem 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+      gap: 1rem;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .section-heading::before {
+      content: "";
+      width: 1rem;
+      height: 1rem;
+      min-width: 1rem;
+      background: var(--accent);
+      border-radius: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .section-heading::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: rgb(255, 255, 255);
+      margin-left: 1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .cards .card:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+
+    .cards .card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .service-list .service-item:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .service-list .service-item:nth-child(3) {
+      animation-delay: 0.35s;
+    }
+
+    .card {
+      padding: 1.4rem;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 24px 40px rgba(0,0,0,0.18);
+      min-height: 220px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .card.horizontal {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-height: 180px;
+    }
+
+    .card.horizontal .card-copy {
+      flex: 1;
+    }
+
+    .card.horizontal img {
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255,255,255,0.24);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card h4 {
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .card span {
+      display: inline-flex;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .card .button {
+      margin-top: 1.2rem;
+    }
+
+    footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 840px) {
+      header,
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        order: 2;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    .audio-player {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 20;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.75);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .audio-player audio {
+      display: block;
+      width: 260px;
+      min-width: 220px;
+      background: rgba(0, 0, 0, 0.75);
+      color: var(--fg);
+    }
+
+    .particle {
+      position: fixed;
+      width: 0.8rem;
+      height: 0.8rem;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 12s infinite linear;
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+      opacity: 0.9;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, -50px) rotate(90deg); }
+      50% { transform: translate(-50px, 100px) rotate(180deg); }
+      75% { transform: translate(150px, 50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 30%; top: 40%; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 50%; top: 60%; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 70%; top: 30%; animation-delay: 6s; }
+    .particle:nth-child(5) { left: 90%; top: 50%; animation-delay: 8s; }
+    .particle:nth-child(6) { left: 20%; top: 70%; animation-delay: 1s; }
+    .particle:nth-child(7) { left: 60%; top: 10%; animation-delay: 3s; }
+    .particle:nth-child(8) { left: 80%; top: 80%; animation-delay: 5s; }
+    .particle:nth-child(9) { left: 5%; top: 35%; animation-delay: 7s; }
+    .particle:nth-child(10) { left: 25%; top: 55%; animation-delay: 9s; }
+    .particle:nth-child(11) { left: 45%; top: 15%; animation-delay: 0.5s; }
+    .particle:nth-child(12) { left: 65%; top: 75%; animation-delay: 2.5s; }
+    .particle:nth-child(13) { left: 85%; top: 25%; animation-delay: 4.5s; }
+    .particle:nth-child(14) { left: 15%; top: 85%; animation-delay: 6.5s; }
+    .particle:nth-child(15) { left: 35%; top: 5%; animation-delay: 8.5s; }
+    .particle:nth-child(16) { left: 55%; top: 65%; animation-delay: 1.5s; }
+    .particle:nth-child(17) { left: 75%; top: 45%; animation-delay: 3.5s; }
+    .particle:nth-child(18) { left: 95%; top: 95%; animation-delay: 5.5s; }
+    .particle:nth-child(19) { left: 40%; top: 90%; animation-delay: 7.5s; }
+    .particle:nth-child(20) { left: 60%; top: 20%; animation-delay: 9.5s; }
+    .particle:nth-child(21) { left: 10%; top: 50%; animation-delay: 0.8s; }
+    .particle:nth-child(22) { left: 30%; top: 80%; animation-delay: 2.8s; }
+    .particle:nth-child(23) { left: 50%; top: 30%; animation-delay: 4.8s; }
+    .particle:nth-child(24) { left: 70%; top: 60%; animation-delay: 6.8s; }
+  </style>
+</head>
+<body>
+  <div class="audio-player">
+    <audio controls loop preload="auto">
+      <source src="musik.mp3.mp3" type="audio/mpeg">
+      <volume value="0.5" />
+       Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <img src="https://h.top4top.io/p_3761gvfn21.png" alt="logo" class="brand-logo" />
+      </a>
+      <nav>
+        <a href="#services">Layanan</a>
+        <a href="#portfolio">Portofolio</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">Jasa Desain <strong>Murah&Cepat</strong> untuk Kebutuhan UMKM Anda</h1>
+        <p class="hero-text">Buat pengalaman visual dengan kebutuhan anda, Kami siap membantu anda menciptakan desain untuk memenuhi kebutuhan UMKM Anda. Harga terjangkau dan hasil berkualitas.</p>
+        <div class="buttons">
+          <a href="penawaran.html" class="button">Lihat Penawaran</a>
+          <a href="#services" class="button secondary">Lihat Layanan</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h3>Kelebihan Kami</h3>
+        <div class="service-list">
+          <div class="service-item">
+            <div>
+              <strong>Harga Terjangkau</strong>
+              <p>Kami menawarkan layanan desain dengan harga yang kompetitif tanpa mengorbankan kualitas.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div>
+              <strong>Estimasi Cepat</strong>
+              <p>Kami memberikan estimasi waktu yang akurat dan memenuhi tenggat waktu yang ditentukan.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div>
+              <strong>Kebutuhan Bisnis</strong>
+              <p>Kami memahami kebutuhan bisnis Anda dan menyediakan solusi desain yang sesuai.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="section">
+      <h2 class="section-heading">Apa itu FX.DESIGN</h2>
+      <article class="card" style="min-height: auto;">
+        <p style="margin: 0; color: var(--muted); font-size: 1.3rem; line-height: 1.9;">FX.DESIGN adalah layanan desain grafis untuk membantu UMKM dan bisnis modern menampilkan pesan, brand, dan produk dengan tampilan profesional. Kami menyediakan desain media sosial, media cetak, identitas brand, hingga UI digital yang disesuaikan dengan kebutuhan pasar Anda.</p>
+      </article>
+    </section>
+
+    <section id="services" class="section">
+      <h2 class="section-heading">Layanan</h2>
+      <div class="cards">
+        <article class="card horizontal">
+          <div class="card-copy">
+            <h4>Desain Media Sosial</h4>
+            <p>Desain konten untuk platform media sosial yang menarik dan efektif.</p>
+            <p>Ex. Feed Instagram, Banner YouTube, etc.</p>
+            <span>Start from Rp.15.000</span>
+          </div>
+          <img src="https://a.top4top.io/p_3762mg07z2.png" alt="Contoh desain media sosial" />
+        </article>
+        <article class="card horizontal">
+          <div class="card-copy">
+            <h4>Desain Media Cetak</h4>
+            <p>Desain media cetak untuk keperluan kampanye atau promosi</p>
+            <p>Ex. Kaos, Banner, Poster, Brosur, Flyer, Katalog, etc.</p>
+            <span>Start from Rp.15.000</span>
+          </div>
+          <img src="https://l.top4top.io/p_3762ew4dc1.png" alt="Contoh desain media cetak" />
+        </article>
+        <article class="card horizontal">
+          <div class="card-copy">
+            <h4>Desain Lainnya</h4>
+            <p>Desain tambahan untuk kebutuhan visual khusus dan unik.</p>
+            <p>Ex. Logo, Splash Screen, Packaging, dll.</p>
+            <span>Start from Rp.15.000</span>
+          </div>
+          <img src="https://h.top4top.io/p_3787qzvwp1.png" alt="Contoh desain lainnya" />
+        </article>
+      </div>
+    </section>
+    <section id="services" class="section">
+      <div class="cards">
+        <article class="card">
+          <h4>Informasi</h4>
+          <p>Harga dapat berubah tergantung pada tingkat kesulitan dan waktu pengerjaan desain.
+            Estimasi waktu pengerjaan dapat bervariasi tergantung pada kompleksitas proyek dan jumlah revisi yang dikerahkan.</p>
+          </p>
+          <span>Information</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <h2 class="section-heading">Portofolio</h2>
+      <div class="cards">
+        <article class="card">
+          <h4>Desain Media Sosial</h4>
+          <p>Desain konten untuk platform media sosial yang menarik dan efektif.</p>
+          <p>Ex. Feed Instagram, Banner YouTube, etc.</p>
+          <a href="sosial.html" class="button secondary">Lihat Desain Sosial</a>
+        </article>
+        <article class="card">
+          <h4>Desain Media Cetak</h4>
+          <p>Desain media cetak untuk keperluan kampanye atau promosi.</p>
+          <p>Ex. Kaos, Banner, Poster, Brosur, Flyer, Katalog, etc.</p>
+          <a href="cetak.html" class="button secondary">Lihat Desain Cetak</a>
+        </article>
+        <article class="card">
+          <h4>Desain Lainnya</h4>
+          <p>Desain yang tidak termasuk dalam kategori.</p>
+          <p>Ex. Splash Screen, Logo, etc.</p>
+          <a href="lainnya.html" class="button secondary">Lihat Desain Lainnya</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact-order" class="section">
+      <h2 class="section-heading">Kontak & Pemesanan</h2>
+      <div class="cards">
+        <article class="card">
+          <h4>Hubungi Kami</h4>
+          <p>Kami siap membantu Anda dengan kebutuhan desain. Hubungi kami untuk konsultasi gratis dan diskusi proyek.</p>
+          <div style="margin-top: 1rem;">
+            <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> hello@fxdesign.id</p>
+            <p style="margin-bottom: 0.5rem;"><strong>WhatsApp:</strong> +62 895 3830 98720</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Instagram:</strong> @fx.design0</p>
+            <p style="margin-bottom: 0.5rem;"><strong>TikTok:</strong> @fx.design0</p>
+          </div>
+          <a href="https://wa.me/62895383098720" class="button" target="_blank">Pesan Sekarang</a>
+        </article>
+        <article class="card">
+          <h4>Cara Pemesanan</h4>
+          <p>Proses pemesanan yang mudah dan cepat. Kami akan memandu Anda dari awal hingga selesai.</p>
+          <div style="margin-top: 1rem;">
+            <p style="margin-bottom: 0.5rem;"><strong>1.</strong> Konsultasi & Briefing</p>
+            <p style="margin-bottom: 0.5rem;"><strong>2.</strong> Konfirmasi Harga & Timeline</p>
+            <p style="margin-bottom: 0.5rem;"><strong>3.</strong> Pembayaran DP 50%</p>
+            <p style="margin-bottom: 0.5rem;"><strong>4.</strong> Pengerjaan & Revisi</p>
+            <p style="margin-bottom: 0.5rem;"><strong>5.</strong> Final & Pelunasan</p>
+          </div>
+          <a href="penawaran.html" class="button secondary">Lihat Penawaran</a>
+        </article>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div>
+        <strong>FX.DESIGN</strong>
+        <p>Effect to FX</p>
+        <p>Copyright © 2026 FX.DESIGN. All rights reserved.</p>
+      </div>
+      <div>
+        <p>Instagram: @fx.design0</p>
+        <p>Tiktok: @fx.design0</p>
+        <p>Whats App: +62 895 3830 98720</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

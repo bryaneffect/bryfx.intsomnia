@@ -159,6 +159,65 @@
       border-color: var(--border);
     }
 
+    .whatsapp-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+      padding: 1rem;
+    }
+
+    .whatsapp-popup-overlay.active {
+      display: flex;
+    }
+
+    .whatsapp-popup {
+      position: relative;
+      width: min(420px, 100%);
+      background: rgba(10, 10, 10, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      padding: 1.5rem;
+      color: var(--fg);
+    }
+
+    .whatsapp-popup h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .whatsapp-popup p {
+      margin: 0 1rem 1.4rem 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .whatsapp-popup .button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .whatsapp-popup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.6);
+      color: var(--fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
     .hero-panel {
       padding: 1.4rem;
       border: 1px solid var(--border);
@@ -400,6 +459,14 @@
   </style>
 </head>
 <body>
+  <div class="whatsapp-popup-overlay" id="whatsappPopup" role="dialog" aria-modal="true" aria-labelledby="whatsappPopupTitle">
+    <div class="whatsapp-popup">
+      <button type="button" class="whatsapp-popup-close" id="whatsappPopupClose" aria-label="Tutup popup">×</button>
+      <h3 id="whatsappPopupTitle">Pesan Sekarang</h3>
+      <p>Hubungi kami melalui WhatsApp untuk memesan desain Anda. Klik tombol di bawah untuk langsung memulai chat.</p>
+      <a href="https://wa.me/62895383098720" class="button" target="_blank" rel="noopener noreferrer">Chat WhatsApp</a>
+    </div>
+  </div>
   <div class="particle"></div>
   <div class="particle"></div>
   <div class="particle"></div>
@@ -557,7 +624,7 @@
             <p style="margin-bottom: 0.5rem;"><strong>Instagram:</strong> @fx.design0</p>
             <p style="margin-bottom: 0.5rem;"><strong>TikTok:</strong> @fx.design0</p>
           </div>
-          <a href="https://wa.me/62895383098720" class="button" target="_blank">Pesan Sekarang</a>
+          <button type="button" class="button" id="whatsappOpen">Pesan Sekarang</button>
         </article>
         <article class="card">
           <h4>Cara Pemesanan</h4>
@@ -587,5 +654,26 @@
       </div>
     </footer>
   </div>
+  <script>
+    const whatsappPopup = document.getElementById('whatsappPopup');
+    const whatsappOpen = document.getElementById('whatsappOpen');
+    const whatsappClose = document.getElementById('whatsappPopupClose');
+
+    function openWhatsAppPopup() {
+      whatsappPopup.classList.add('active');
+    }
+
+    function closeWhatsAppPopup() {
+      whatsappPopup.classList.remove('active');
+    }
+
+    whatsappOpen.addEventListener('click', openWhatsAppPopup);
+    whatsappClose.addEventListener('click', closeWhatsAppPopup);
+    whatsappPopup.addEventListener('click', function (event) {
+      if (event.target === whatsappPopup) {
+        closeWhatsAppPopup();
+      }
+    });
+  </script>
 </body>
 </html>
